@@ -1,0 +1,2 @@
+METHOD (OPTIONS|GET|HEAD|POST|PUT|DELETE|TRACE|CONNECT)
+NGINX_ACCESS %{IPORHOST:remote_addr} forwarded for %{IPORHOST:visitor_ip}(?:,\s[\d.]+)* - %{USERNAME:remote_user} \[%{HTTPDATE:time_local}\] "%{DATA:server_name}" "%{METHOD:method} %{URIPATHPARAM:path} HTTP/%{NUMBER:http_version}" %{INT:status} %{INT:body_bytes_sent} "%{NOTSPACE:referer}" %{QS:user_agent} "%{NOTSPACE:request_id}" "%{NOTSPACE:request_body}"

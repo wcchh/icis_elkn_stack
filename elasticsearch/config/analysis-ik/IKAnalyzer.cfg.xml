@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>IK Analyzer</comment>
+	<entry key="ext_dict">user.dic</entry>
+	<entry key="ext_stopwords">stopwords.dic</entry>
+	<!-- <entry key="remote_ext_dict">http://server/user.dic</entry> -->
+	<!-- <entry key="remote_ext_stopwords">http://server/stopwords.dic</entry> -->
+</properties>

@@ -1,0 +1,16 @@
+# This file is where you define your pipelines. You can define multiple.
+# For more information on multiple pipelines, see the documentation:
+#   https://www.elastic.co/guide/en/logstash/current/multiple-pipelines.html
+
+# - pipeline.id: guo_input
+#   path.config: "/usr/share/logstash/pipeline/guo/guo_input.conf"
+# - pipeline.id: guo_updater
+#   path.config: "/usr/share/logstash/pipeline/guo/guo_updater.conf"
+# # - pipeline.id: fixer
+# #   path.config: "/usr/share/logstash/pipeline/fixer/guo_fixer.conf"
+# - pipeline.id: ptt
+#   path.config: "/usr/share/logstash/pipeline/ptt.conf"
+# - pipeline.id: pttpy
+#   path.config: "/usr/share/logstash/pipeline/ptt_py.conf"
+- pipeline.id: nginx
+  path.config: "/usr/share/logstash/pipeline/nginx.conf"
