@@ -1,5 +1,5 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.2
-ENV VERSION=6.2.2
+FROM docker.elastic.co/elasticsearch/elasticsearch-oss:6.7.2
+ENV VERSION=6.7.2
 
 # 不顯示deprecation警告層級訊息
 RUN echo "logger.deprecation.name = org.elasticsearch.deprecation" >> config/log4j2.properties
