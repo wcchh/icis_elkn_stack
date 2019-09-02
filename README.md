@@ -45,3 +45,23 @@
  /kibana ==> http://kibana:5601/
 ``` 
 -->
+## Stand Alone Volumes
+
+Using command: `$ docker volume ls` and we could see them:
+
+```
+DRIVER    VOLUME NAME
+local            icis_esdata
+local            icis_lsdata
+```
+
+## Issues
+As run up elasticsearch service, we may have this error : 
+```
+"Unable to receive connection: http://elasticsearch:9200/"
+vm.max_map_count on the linux box kernel setting needs to be set to at least 262144
+```
+
+And we could fix it from host by 
+`$ sudo sysctl -w vm.max_map_count=262144`
+

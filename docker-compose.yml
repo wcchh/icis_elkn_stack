@@ -1,7 +1,7 @@
-version: '3.5'
+version: "3.5"
 services:
   elasticsearch:
-    build: 
+    build:
       context: ./elasticsearch
     restart: always
     container_name: elasticsearch
@@ -16,14 +16,14 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - ./data/esdata1:/usr/share/elasticsearch/data
+      - esdata1:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
     networks:
       - esnet
 
   kibana:
-    build: 
+    build:
       context: ./kibana
     restart: always
     container_name: kibana
@@ -35,7 +35,7 @@ services:
       - esnet
 
   logstash:
-    build: 
+    build:
       context: ./logstash
     restart: always
     container_name: logstash
@@ -54,7 +54,7 @@ services:
   nginx:
     build: ./nginx
     restart: always
-    container_name: server
+    container_name: nginx
     ports:
       - 8080:80
     volumes:
@@ -65,15 +65,16 @@ services:
       - logstash
     networks:
       - esnet
-    
 
 volumes:
-  nginx_conf:
-    driver: local
   esdata1:
     driver: local
+    name: icis_esdata
   logstash_data:
     driver: local
+    name: icis_lsdata
+  # nginx_conf:
+  #   driver: local
 
 networks:
   esnet:
