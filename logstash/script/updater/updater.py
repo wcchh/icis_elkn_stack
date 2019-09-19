@@ -3,6 +3,9 @@ from elasticsearch import Elasticsearch
 from argparse import ArgumentParser
 import re
 
+esIndex = "news"
+keywords = [ "半導體" ]
+
 # 指令參數
 parser = ArgumentParser()
 parser.add_argument("docid", help="document id")
@@ -17,7 +20,7 @@ es = Elasticsearch([
 ])
 
 # 取得該筆資料
-item = es.get(index="guo", doc_type="doc", id=docid)
+item = es.get(index=esIndex, doc_type="doc", id=docid)
 newsurl = item['_source']['link']
 # 如果存在google url代理，則需要先取出真正的新聞網址
 if item['_source']['type'] == 'google-alerts':
@@ -37,19 +40,26 @@ if 'error' not in item['_source'] and 'fulltext' not in item['_source']:
             # print('內文:')
             # print(fulltext)
 
-            # 將內文回填es
-            es.update(
-                index="guo", 
-                doc_type="doc", 
-                id=docid, 
-                body={"doc": {"fulltext": nsoup.contents(), "title": nsoup.title(), "channel": nsoup.channel}})
+            # bingo as One matchs! (OR)
+            bingo = False
+            for keyword in keywords:
+				if keyword in fulltext:
+					bingo = True
+
+            if bingo:
+				# 將內文回填es
+				es.update(
+					index=esIndex, 
+					doc_type="doc", 
+					id=docid, 
+					body={"doc": {"fulltext": nsoup.contents(), "title": nsoup.title(), "channel": nsoup.channel}})
             print("已完成: " + docid)
         else:
             print("不支援該網站: " + newsurl)
             print("document id: " + docid)
             # 將內文回填es
             es.update(
-                index="guo", 
+                index=esIndex, 
                 doc_type="doc", 
                 id=docid, 
                 body={"doc": {"error": 'twnews not support'}})
@@ -58,7 +68,7 @@ if 'error' not in item['_source'] and 'fulltext' not in item['_source']:
         print("document id: " + docid)
         # 將內文回填es
         es.update(
-            index="guo", 
+            index=esIndex, 
             doc_type="doc", 
             id=docid, 
             body={"doc": {"error": 'twnews not support'}})

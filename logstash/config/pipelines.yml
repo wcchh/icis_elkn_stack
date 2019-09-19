@@ -12,5 +12,9 @@
 #   path.config: "/usr/share/logstash/pipeline/ptt.conf"
 # - pipeline.id: pttpy
 #   path.config: "/usr/share/logstash/pipeline/ptt_py.conf"
+- pipeline.id: news_g_alerts
+  path.config: "/usr/share/logstash/pipeline/icis_news.conf"
+- pipeline.id: news_twnews
+  path.config: "/usr/share/logstash/pipeline/icis_twnews.conf"
 - pipeline.id: nginx
   path.config: "/usr/share/logstash/pipeline/nginx.conf"
