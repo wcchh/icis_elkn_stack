@@ -47,8 +47,8 @@ if 'error' not in item['_source'] and 'fulltext' not in item['_source']:
                     bingo = True
 
             if bingo:
-			    # 將內文回填es
-			    es.update(
+                # 將內文回填es
+                es.update(
                                 index=esIndex,
                                 doc_type="doc",
                                 id=docid,
