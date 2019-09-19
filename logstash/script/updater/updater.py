@@ -43,16 +43,17 @@ if 'error' not in item['_source'] and 'fulltext' not in item['_source']:
             # bingo as One matchs! (OR)
             bingo = False
             for keyword in keywords:
-				if keyword in fulltext:
-					bingo = True
+                if keyword in fulltext:
+                    bingo = True
 
             if bingo:
-				# 將內文回填es
-				es.update(
-					index=esIndex, 
-					doc_type="doc", 
-					id=docid, 
-					body={"doc": {"fulltext": nsoup.contents(), "title": nsoup.title(), "channel": nsoup.channel}})
+			    # 將內文回填es
+			    es.update(
+                                index=esIndex,
+                                doc_type="doc",
+                                id=docid,
+                                body={"doc": {"fulltext": nsoup.contents(), "title": nsoup.title(), "channel": nsoup.channel}})
+
             print("已完成: " + docid)
         else:
             print("不支援該網站: " + newsurl)
