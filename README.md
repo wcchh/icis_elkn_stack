@@ -26,9 +26,9 @@
 
 ## 服務代理(test yet)
 
-* ES查詢服務(test yet): http://192.168.22.3:8080/essearch
+* ES查詢服務(test yet): http://192.168.22.3:8080/essearch/dxi/_search
 ```
- /essearch ==> http://elasticsearch:9200/dxi/_search
+ /essearch ==> http://elasticsearch:9200/dxi/_search 
 ```
 
 ## Stand Alone Volumes
