@@ -99,6 +99,8 @@ run_by_yml() {
 
 	echo "[Docker Compose Stop] ..."
 	ssh $REMOTE_ACCADDR "cd $R_BASEFOLDERNAME/$FOLDERNAME; docker-compose down"
+	echo "[Docker Compose State] ..."
+	ssh $REMOTE_ACCADDR "cd $R_BASEFOLDERNAME/$FOLDERNAME; docker-compose ps"
 	echo "[Docker Compose Start] ..."
 	ssh $REMOTE_ACCADDR "cd $R_BASEFOLDERNAME/$FOLDERNAME; docker-compose up -d"
 	echo "[Docker Compose Start] ... ${GREEN}all done${NC}."
@@ -114,4 +116,6 @@ main() {
 }
 
 # ------------------------------------------------------------------------------------------------
-main
+# main
+check_remote_setting
+ssh $REMOTE_ACCADDR "cd $R_BASEFOLDERNAME/$FOLDERNAME; docker-compose ps"

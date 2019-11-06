@@ -3,7 +3,7 @@ services:
   elasticsearch:
     build:
       context: ./elasticsearch
-    restart: always
+    restart: unless-stopped
     container_name: elasticsearch
     environment:
       - cluster.name=elk-cluster
@@ -25,7 +25,7 @@ services:
   kibana:
     build:
       context: ./kibana
-    restart: always
+    restart: unless-stopped
     container_name: kibana
     depends_on:
       - elasticsearch
@@ -37,7 +37,7 @@ services:
   logstash:
     build:
       context: ./logstash
-    restart: always
+    restart: unless-stopped
     container_name: logstash
     environment:
       - "LS_JAVA_OPTS=-Xms536m -Xmx536m"
@@ -53,7 +53,7 @@ services:
 
   nginx:
     build: ./nginx
-    restart: always
+    restart: unless-stopped
     container_name: nginx
     ports:
       - 8080:80
