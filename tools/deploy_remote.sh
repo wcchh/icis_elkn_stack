@@ -116,6 +116,7 @@ main() {
 }
 
 # ------------------------------------------------------------------------------------------------
-# main
-check_remote_setting
-ssh $REMOTE_ACCADDR "cd $R_BASEFOLDERNAME/$FOLDERNAME; docker-compose ps"
+main
+
+# check_remote_setting
+# ssh $REMOTE_ACCADDR "cd $R_BASEFOLDERNAME/$FOLDERNAME; docker-compose ps"
