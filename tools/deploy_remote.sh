@@ -104,6 +104,11 @@ run_by_yml() {
 	echo "[Docker Compose Start] ..."
 	ssh $REMOTE_ACCADDR "cd $R_BASEFOLDERNAME/$FOLDERNAME; docker-compose up -d"
 	echo "[Docker Compose Start] ... ${GREEN}all done${NC}."
+	echo "\n"
+	echo "[Docker State] Please check the field [CREATED], they shall all less than ${YELLOW}1 min${NC}..."
+	ssh $REMOTE_ACCADDR "cd $R_BASEFOLDERNAME/$FOLDERNAME; docker ps"
+
+	echo "\n${YELLOW}Please wait for ${RED}decades seconds${YELLOW} to test till system ready.${NC}"
 }
 
 
