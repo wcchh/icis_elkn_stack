@@ -1,8 +1,15 @@
 #!/bin/bash
 
-REMOTE_ADDR="192.168.22.3" 
-REMOTE_ACC="jenkins" 
-R_BASEFOLDERNAME="icis" 
+if [  -z "$REMOTE_ADDR" ]; then	REMOTE_ADDR="192.168.22.3" ; fi
+if [  -z "$REMOTE_ACC" ]; then	REMOTE_ACC="jenkins" ; fi
+if [  -z "$R_BASEFOLDERNAME" ]; then	R_BASEFOLDERNAME="icis" ; fi
+
+# Check environment parameters:
+# echo REMOTE_ADDR:$REMOTE_ADDR
+# echo REMOTE_ACC:$REMOTE_ACC 
+# echo R_BASEFOLDERNAME:$R_BASEFOLDERNAME
+# exit
+
 WDIR=.
 
 # ------------------------------------------------------------------------------------------------
