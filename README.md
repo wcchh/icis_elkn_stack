@@ -61,3 +61,12 @@ With default environment settings (as below), it will deploy current project to 
 * REMOTE_ADDR="192.168.22.3" 
 * REMOTE_ACC="jenkins" 
 * R_BASEFOLDERNAME="icis" 
+
+## Elasticsearch Cluster
+There're two `yml` files for the different modes of elasticsearch:
+* Cluster Mode: docker-compose-cluster.yml
+* Single Mode: docker-compose-single.yml
+
+Choose mode by copy the mode `yml` file to `docker-compose.yml`. (force cover currently file)
+
+Current  cluster mode has 1 master and 2 data nodes.
