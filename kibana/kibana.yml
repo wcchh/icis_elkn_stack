@@ -7,3 +7,4 @@ elasticsearch.url: http://elasticsearch:9200
 elasticsearch.username: elastic
 elasticsearch.password: changeme
 server.basePath: "/kibana"
+server.rewriteBasePath: true
