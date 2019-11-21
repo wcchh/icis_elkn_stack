@@ -70,3 +70,5 @@ There're two `yml` files for the different modes of elasticsearch:
 Choose mode by copy the mode `yml` file to `docker-compose.yml`. (force cover currently file)
 
 Current  cluster mode has 1 master and 2 data nodes.
+
+*Check the es health status: `curl http://127.0.0.1:9200/_cluster/health?pretty`
