@@ -5,7 +5,7 @@ services:
     build:
       context: ./elasticsearch
       labels: [ "es.mode=cluster" ]
-    # restart: unless-stopped
+    restart: unless-stopped
     container_name: elasticsearch_1
     environment:
       - cluster.name=icis-elk-cluster
@@ -31,7 +31,7 @@ services:
   elasticsearch2:
     build:
       context: ./elasticsearch
-    # restart: unless-stopped
+    restart: unless-stopped
     container_name: elasticsearch_2
     environment:
       - cluster.name=icis-elk-cluster
@@ -57,7 +57,7 @@ services:
   elasticsearch3:
     build:
       context: ./elasticsearch
-    # restart: unless-stopped
+    restart: unless-stopped
     container_name: elasticsearch_3
     environment:
       - cluster.name=icis-elk-cluster
