@@ -1,0 +1,145 @@
+version: "3.5"
+services:
+
+  elasticsearch:
+    build:
+      context: ./elasticsearch
+      labels: [ "es.mode=cluster" ]
+    # restart: unless-stopped
+    container_name: elasticsearch_1
+    environment:
+      - cluster.name=icis-elk-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms1536m -Xmx1536m"
+      - http.cors.enabled=true
+      - http.cors.allow-origin=*
+      - node.name=es1
+      - node.master=true  # 意思是該節點為主節點
+      - node.data=false
+      # - discovery.zen.ping.unicast.hosts=elasticsearch:9300, elasticsearch:9300 # 配置自動發現
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - esnet
+
+  elasticsearch2:
+    build:
+      context: ./elasticsearch
+    # restart: unless-stopped
+    container_name: elasticsearch_2
+    environment:
+      - cluster.name=icis-elk-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms1536m -Xmx1536m"
+      - http.cors.enabled=true
+      - http.cors.allow-origin=*
+      - node.name=es2
+      - node.master=false  # 意思是該節點為主節點
+      - node.data=true
+      - discovery.zen.ping.unicast.hosts=elasticsearch:9300 # 配置自動發現
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata2:/usr/share/elasticsearch/data
+    # ports:
+    #   - 9200:9200
+    networks:
+      - esnet
+
+  elasticsearch3:
+    build:
+      context: ./elasticsearch
+    # restart: unless-stopped
+    container_name: elasticsearch_3
+    environment:
+      - cluster.name=icis-elk-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms1536m -Xmx1536m"
+      - http.cors.enabled=true
+      - http.cors.allow-origin=*
+      - node.name=es3
+      - node.master=false  # 意思是該節點為主節點
+      - node.data=true
+      - discovery.zen.ping.unicast.hosts=elasticsearch:9300 # 配置自動發現
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata3:/usr/share/elasticsearch/data
+    # ports:
+    #   - 9200:9200
+    networks:
+      - esnet
+
+  kibana:
+    build:
+      context: ./kibana
+    restart: unless-stopped
+    container_name: kibana
+    depends_on:
+      - elasticsearch
+    volumes:
+      - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    networks:
+      - esnet
+
+  logstash:
+    build:
+      context: ./logstash
+    restart: unless-stopped
+    container_name: logstash
+    environment:
+      - "LS_JAVA_OPTS=-Xms536m -Xmx536m"
+    depends_on:
+      - elasticsearch
+    volumes:
+      - logstash_data:/usr/share/logstash/data
+      - ./logstash/pipeline:/usr/share/logstash/pipeline
+      - ./logstash/config:/usr/share/logstash/config
+      - ./logstash/script:/usr/share/logstash/script
+    networks:
+      - esnet
+
+  nginx:
+    build: ./nginx
+    restart: unless-stopped
+    container_name: nginx
+    ports:
+      - 8080:80
+    volumes:
+      - ./nginx/src/frontend:/usr/share/nginx/html
+      - ./nginx/conf/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - elasticsearch
+      - logstash
+    networks:
+      - esnet
+
+volumes:
+  esdata1:
+    driver: local
+    name: icis_esdata_1
+  esdata2:
+    driver: local
+    name: icis_esdata_2
+  esdata3:
+    driver: local
+    name: icis_esdata_3
+  logstash_data:
+    driver: local
+    name: icis_lsdata
+  # nginx_conf:
+  #   driver: local
+
+networks:
+  esnet:
+    name: icis
