@@ -9,7 +9,7 @@ pipeline {
     stage('Production Deploy') {
       steps {
         git 'git@192.168.23.68:semiconductor_bigdata/b_group/icis_elkn_stack.git'
-        sh 'echo pwd'
+        sh 'pwd'
       }
     }
   }
