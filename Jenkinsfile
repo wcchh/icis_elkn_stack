@@ -13,7 +13,9 @@ pipeline {
 
 cat /home/sysmgr/Data/nfs/icis_elkn_stack/logstash/pipeline/nginx.conf
 
-'''
+sed -i \'s/kibana:5601/192.168.22.200:30008\' /home/sysmgr/Data/nfs/icis_elkn_stack/nginx/conf/default.conf
+
+rm /home/sysmgr/Data/nfs/icis_elkn_stack/nginx/conf/nginx.conf'''
       }
     }
   }
