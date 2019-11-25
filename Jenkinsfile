@@ -22,20 +22,20 @@ rm /home/sysmgr/Data/nfs/icis_elkn_stack/nginx/conf/nginx.conf'''
 
 pwd
 
-kubectl delete -f icis-elkn-es_deployment_staging.yaml
-kubectl delete -f icis-elkn-kibana_deployment_staging.yaml
-kubectl delete -f icis-elkn-logstash_deployment_staging.yaml
-kubectl delete -f icis-elkn-nginx_deployment_staging.yaml
+kubectl delete -f ./deploy/icis-elkn-es_deployment_staging.yaml
+kubectl delete -f ./deploy/icis-elkn-kibana_deployment_staging.yaml
+kubectl delete -f ./deploy/icis-elkn-logstash_deployment_staging.yaml
+kubectl delete -f ./deploy/icis-elkn-nginx_deployment_staging.yaml
 
 sleep 5
 
-kubectl apply -f icis-elkn-es_deployment_staging.yaml
+kubectl apply -f ./deploy/icis-elkn-es_deployment_staging.yaml
 
 sleep 10
 
-kubectl apply -f icis-elkn-kibana_deployment_staging.yaml
-kubectl apply -f icis-elkn-logstash_deployment_staging.yaml
-kubectl apply -f icis-elkn-nginx_deployment_staging.yaml'''
+kubectl apply -f ./deploy/icis-elkn-kibana_deployment_staging.yaml
+kubectl apply -f ./deploy/icis-elkn-logstash_deployment_staging.yaml
+kubectl apply -f ./deploy/icis-elkn-nginx_deployment_staging.yaml'''
       }
     }
   }
