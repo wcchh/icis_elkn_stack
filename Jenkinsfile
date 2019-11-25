@@ -12,6 +12,8 @@ rsync -avh * /home/sysmgr/Data/nfs/icis_elkn_stack'''
         git 'git@192.168.23.68:semiconductor_bigdata/b_group/icis_elkn_stack.git'
         sh '''sed -e \'3d\' /home/sysmgr/Data/nfs/icis_elkn_stack/logstash/pipeline/nginx.conf
 
+cat /home/sysmgr/Data/nfs/icis_elkn_stack/logstash/pipeline/nginx.conf
+
 '''
       }
     }
