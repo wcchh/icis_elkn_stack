@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage('Production Sync Code') {
       steps {
-        sh 'rsync -avh * /home/sysmgr/Data/nfs/icis_elkn_stack'
+        sh '''sed -e \'3d\' /home/sysmgr/.jenkins-sa-k8s-master/workspace/icis-elkn_master/logstash/pipeline/nginx.conf
+rsync -avh * /home/sysmgr/Data/nfs/icis_elkn_stack'''
       }
     }
     stage('Production Deploy') {
