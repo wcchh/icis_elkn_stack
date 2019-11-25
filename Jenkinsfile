@@ -20,6 +20,8 @@ sed -i \'/resolver/d\' /home/sysmgr/Data/nfs/icis_elkn_stack/nginx/conf/default.
 rm /home/sysmgr/Data/nfs/icis_elkn_stack/nginx/conf/nginx.conf'''
         sh '''echo Deploy
 
+pwd
+
 kubectl delete -f icis-elkn-es_deployment_staging.yaml
 kubectl delete -f icis-elkn-kibana_deployment_staging.yaml
 kubectl delete -f icis-elkn-logstash_deployment_staging.yaml
