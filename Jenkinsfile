@@ -9,7 +9,9 @@ pipeline {
     stage('Production Deploy') {
       steps {
         git 'git@192.168.23.68:semiconductor_bigdata/b_group/icis_elkn_stack.git'
-        sh 'pwd'
+        sh '''sed -e \'3d\' /home/sysmgr/Data/nfs/icis_elkn_stack/logstash/pipeline/nginx.conf
+
+'''
       }
     }
   }
