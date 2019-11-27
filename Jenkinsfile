@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label 'sa-k8s-master'
+    }
+
+  }
   stages {
     stage('Production Sync Code') {
       steps {
