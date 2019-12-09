@@ -6,7 +6,8 @@
     * https://news.google.com/rss/search?q={XXX}&hl=zh-TW&gl=TW&ceid=TW:zh-Hant
 
 *  Google Alerts: https://www.google.com.tw/alerts
-<!-- *  Ptt：
+<!-- develop:
+    *  Ptt：
     * 八卦版 Gossiping
     * 政黑版 HatePolitics -->
 
